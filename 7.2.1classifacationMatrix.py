@@ -19,3 +19,20 @@ print(f"Precision: {precision_score(y_test, y_pred):.4f}")
 print(f"Recall: {recall_score(y_test, y_pred):.4f}")
 print(f"F1 Score: {f1_score(y_test, y_pred):.4f}")
 
+# Part 2
+
+from sklearn.metrics import roc_curve, roc_auc_score
+import matplotlib.pyplot as plt
+
+y_proba = rf.predict_proba(X_test) [:, 1]
+fpr, tpr, _ = roc_curve(y_test, y_proba)
+auc = roc_auc_score(y_test,y_proba)
+
+plt.figure(figsize=(8,6))
+plt.plot(fpr, tpr, label=f'AUC = {auc:.4f}')
+plt.plot([0,1],[0,1],'k--',label='Random')
+plt.xlabel('False Positive Rate')
+plt.ylabel('True Positiive Rate')
+plt.title('ROC Curve')
+plt.legend()
+plt.show()
