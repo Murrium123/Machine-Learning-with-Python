@@ -110,3 +110,19 @@ grid_search.fit(X_train, y_train)
 
 print(f'Best params: {grid_search.best_params_}')
 print(f'Best CV F1: {grid_search.best_score_:.4f}')
+
+print(f"\nRandom Search\n")
+from sklearn.model_selection import RandomizedSearchCV
+from scipy.stats import randint
+
+param_dist = {
+    'n_estimators': randint(50,500),
+    'max_depth': [None] + list(range(3,30)),
+    'min_samples_split': randint(2,20)
+}
+rand_search = RandomizedSearchCV(
+    RandomForestClassifier(random_state=42),
+    param_dist, n_iter=50, cv=5, scoring='f1', random_state=42
+)
+rand_search.fit(X_train, y_train)
+print(f'Best params: {rand_search.best_params_}')
