@@ -91,3 +91,14 @@ plt.ylabel('F1 Score')
 plt.title('Learning Curves')
 plt.legend()
 plt.show()
+
+# Part 6
+print(f"\nHyperparameter Tuning\n")
+
+from sklearn.model_selection import GridSearchCV
+
+param_grid= {
+    'n_estimators': [50,100,200],
+    'max_depth':[None, 5, 10, 20],
+    'min_samples_split': [2,5,10]
+}
