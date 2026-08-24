@@ -102,3 +102,11 @@ param_grid= {
     'max_depth':[None, 5, 10, 20],
     'min_samples_split': [2,5,10]
 }
+grid_search = GridSearchCV(
+    RandomForestClassifier(random_state=42),
+    param_grid, cv=5, scoring='f1', n_jobs=-1
+)
+grid_search.fit(X_train, y_train)
+
+print(f'Best params: {grid_search.best_params_}')
+print(f'Best CV F1: {grid_search.best_score_:.4f}')
