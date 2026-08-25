@@ -24,3 +24,22 @@ class SimplePerceptron:
 
 model = SimplePerceptron()
 print(model)
+
+print(f"\n9.3 Activation functions\n")
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.linspace(-5,5,200)
+
+sigmoid = 1/(1+np.exp(-x))
+relu = np.maximum(0,x)
+leaky_relu= np.where( x > 0, x, 0.01 * x)
+tanh_fn=np.tanh(x)
+
+fig, axes = plt.subplots(2,2,figsize=(12,8))
+for ax, (name, fn) in zip(axes.flatten(), [
+    ('Sigmoid', sigmoid), ('ReLU', relu), 
+    ('Leaky ReLU', leaky_relu),
+    ('Tanh', tanh_fn)]):
+        ax.plot
