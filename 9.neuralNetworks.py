@@ -1,5 +1,6 @@
 import numpy as np
 
+print(f"\nThe Perceptron\n")
 class SimplePerceptron:
     def __init__(self, lr=0.01, n_iter=100):
         self.lr=lr
