@@ -42,4 +42,10 @@ for ax, (name, fn) in zip(axes.flatten(), [
     ('Sigmoid', sigmoid), ('ReLU', relu), 
     ('Leaky ReLU', leaky_relu),
     ('Tanh', tanh_fn)]):
-        ax.plot
+        ax.plot(x,fn,lw=2)
+        ax.axhline(0,color='k',lw=0.5)
+        ax.axvline(0,color='k',lw=0.5)
+        ax.set_title(name)
+        ax.grid(alpha=0.3)
+plt.tight_layout()
+plt.show()
