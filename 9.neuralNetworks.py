@@ -49,3 +49,27 @@ for ax, (name, fn) in zip(axes.flatten(), [
         ax.grid(alpha=0.3)
 plt.tight_layout()
 plt.show()
+
+print(f"\n9.4 MultiLayer Neural Networks\n")
+
+from sklearn.neural_network import MLPClassifier
+from sklearn.datasets import make_moons
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+
+X,y =make_moons(n_samples=500, noise=0.2, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(X,y,random_state=42)
+
+scaler = StandardScaler()
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
+
+mlp=MLPClassifier(
+     hidden_layer_sizes=(100,50),
+     activation='relu',
+     max_iter=500,
+     random_state=42
+)
+
+mlp.fit(X_train, y_train)
+print(f'MLP Accuracy: {mlp.score(X_test,y_test):.4f}')
