@@ -73,3 +73,32 @@ mlp=MLPClassifier(
 
 mlp.fit(X_train, y_train)
 print(f'MLP Accuracy: {mlp.score(X_test,y_test):.4f}')
+
+
+print(f"\nTraining a Neural Network\n")
+
+import torch
+import torch.nn as nn #(neural network)
+import torch.optim as optim #(optimizer)
+
+class SimpleNN(nn.Module):
+     def __init__ (self, input_size, hidden_size, output_size):
+          super(SimpleNN, self).__init__()
+          self.network = nn.Sequential(
+               nn.Linear(input_size, hidden_size),
+               nn.ReLU(),
+               nn.Linear(hidden_size,hidden_size // 2),
+               nn.ReLU(),
+               nn.Linear(hidden_size//2, output_size),
+               nn.Sigmoid()
+               )
+     def forward(self,x):
+          return self.network(x)
+
+model = SimpleNN(20,64,1) 
+criterion = nn.BCELoss()
+optimizer = optim.Adam(model.parameters(), lr=0.001)
+
+total_params = sum(p.numel() for p in model.parameters())
+print(f'Model parameters: {total_params:,}')
+     
