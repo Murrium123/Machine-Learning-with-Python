@@ -5,3 +5,4 @@ import numpy as np
 
 np.random.seed(42)
 X = np.random.randn(200,1)
+y = 3 * X.squeeze() + 2 + np.random.randn(200) * 0.5
