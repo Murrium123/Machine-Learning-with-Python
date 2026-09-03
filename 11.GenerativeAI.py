@@ -19,5 +19,11 @@ class Discriminator(nn.Module):
     super(Discriminator, self).__init__()
     self.model = nn.Sequential(
       nn.Linear(img_dim, 512),
-      
+      nn.LeakyReLU(0.2), nn.Dropout(0.3),
+      nn.Linear(512, 256),
+      nn.LeakyReLU(0.2), nn.Dropout(0.3),
+      nn.Linear(256,1),
+      nn.Sigmoid()
     )
+  def forward(self, img): return self.model(img)
+    
